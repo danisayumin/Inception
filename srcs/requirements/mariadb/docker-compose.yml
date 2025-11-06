@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # O primeiro serviço do seu projeto
+  mariadb:
+    # O nome da sua imagem no Docker Hub, ex: <seu_login>/mariadb
+    image: <seu_login>/mariadb:latest
+    container_name: mariadb
+    build:
+      context: srcs/mariadb
+      dockerfile: Dockerfile
+    # Cria uma rede Docker que será usada por todos os seus serviços
+    networks:
+      - inception
+    # Variáveis de ambiente secretas (adapte com seus valores)
+    environment:
+      MARIADB_ROOT_PASSWORD: <sua_senha_root>
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wp_user
+      MARIADB_PASSWORD: <sua_senha_wp>
+    # Monta um volume para persistir os dados do banco
+    volumes:
+      - mariadb_volume:/var/lib/mysql
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  mariadb_volume:
+    driver: local
