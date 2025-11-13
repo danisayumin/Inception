@@ -1,6 +1,6 @@
 DOCKER_COMPOSE=docker compose -f $(DOCKER_COMPOSE_FILE)
 DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
-PROJECT_ENV_URL = 
+PROJECT_ENV_URL = https://raw.githubusercontent.com/dsayumi-/Inception/srcs
 DOMAIN_NAME = dsayumi-.42.fr
 
 all: install config build
